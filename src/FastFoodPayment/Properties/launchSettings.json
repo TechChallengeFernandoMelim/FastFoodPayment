@@ -1,0 +1,40 @@
+{
+  "profiles": {
+    "FastFoodPayment": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57095;http://localhost:57096"
+    },
+    "Mock Lambda Test Tool": {
+      "commandName": "Executable",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-8.0.exe",
+      "commandLineArgs": "--port 5050",
+      "workingDirectory": ".\\bin\\$(Configuration)\\net8.0"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "AWS_ACCESS_KEY_DYNAMO": "AKIA34WN2M3RWKCRY7GA",
+        "AWS_SECRET_KEY_DYNAMO": "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",
+        "AWS_TABLE_NAME_DYNAMO": "PaymentTable",
+        "AWS_SQS_LOG": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
+        "AWS_SQS_GROUP_ID_LOG": "LogQueue.fifo",
+        "AWS_SQS_PRODUCTION": "https://sqs.us-east-1.amazonaws.com/817549174499/ProductionQueue.fifo",
+        "AWS_SQS_GROUP_ID_PRODUCTION": "ProductionQueue.fifo",
+        "ACCESS_TOKEN_MERCADO_PAGO": "TEST-374986483149722-041110-a1b4a27ab0bfc4e0cc5457230d9d5f96-68960270",
+        "BASE_URL_MERCADO_PAGO": "https://api.mercadopago.com",
+        "USER_ID_MERCADO_PAGO": "68960270",
+        "EXTERNAL_POS_ID_MERCADO_PAGO": "12"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}
