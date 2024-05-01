@@ -19,7 +19,6 @@ public static class PaymentEndpoints
 
     public static void RegisterPaymentsEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGet("/", () => "Teste");
         endpoints.MapPost("/CreatePayment", async ([FromBody] CreatePaymentRequest payment, SqsLogger logger, PaymentRepository paymentRepository) =>
         {
             try
