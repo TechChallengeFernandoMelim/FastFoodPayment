@@ -9,10 +9,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FastFoodPayment/src/FastFoodPayment/FastFoodPayment.csproj", "FastFoodPayment/src/FastFoodPayment/"]
-RUN dotnet restore "./FastFoodPayment/src/FastFoodPayment/FastFoodPayment.csproj"
+COPY ["src/FastFoodPayment/FastFoodPayment.csproj", "src/FastFoodPayment/"]
+RUN dotnet restore "./src/FastFoodPayment/FastFoodPayment.csproj"
 COPY . .
-WORKDIR "/src/FastFoodPayment/src/FastFoodPayment"
+WORKDIR "/src/src/FastFoodPayment"
 RUN dotnet build "./FastFoodPayment.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
