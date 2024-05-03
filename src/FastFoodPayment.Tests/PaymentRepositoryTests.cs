@@ -5,7 +5,7 @@ using FastFoodPayment.Repositories;
 using Moq;
 using System.Net;
 
-namespace FastFoodPayment.Tests.Repositories;
+namespace FastFoodPayment.Tests;
 
 public class PaymentRepositoryTests
 {

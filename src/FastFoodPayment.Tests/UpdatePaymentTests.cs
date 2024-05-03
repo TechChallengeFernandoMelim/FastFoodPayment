@@ -8,7 +8,7 @@ using FastFoodPayment.UseCases;
 using Microsoft.AspNetCore.Http;
 using Moq;
 
-namespace FastFoodPayment.Tests.UseCases;
+namespace FastFoodPayment.Tests;
 
 public class UpdatePaymentTests
 {

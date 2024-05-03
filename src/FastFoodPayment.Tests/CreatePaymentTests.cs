@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 
-namespace FastFoodPayment.Tests.UseCases;
+namespace FastFoodPayment.Tests;
 
 public class CreatePaymentTests()
 {
@@ -57,7 +57,7 @@ public class CreatePaymentTests()
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
-        var paymentRequest = new CreatePaymentRequest{ };
+        var paymentRequest = new CreatePaymentRequest { };
 
         var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
         var mpResponse = new CreatePaymentMPResponse
@@ -87,8 +87,8 @@ public class CreatePaymentTests()
         var result = await createPaymentUseCase.CreatePayment(paymentRequest, mockLogger, mockRepository.Object);
 
         // Assert
-        Assert.Equal(((Microsoft.AspNetCore.Http.HttpResults.Ok<FastFoodPayment.DTOs.Endpoints.CreatePaymentMPResponse>)result).StatusCode, 200);
-        Assert.Equal(mpResponse.QrData, ((Microsoft.AspNetCore.Http.HttpResults.Ok<FastFoodPayment.DTOs.Endpoints.CreatePaymentMPResponse>)result).Value.QrData);
-        Assert.Equal(mpResponse.InStoreOrderId, ((Microsoft.AspNetCore.Http.HttpResults.Ok<FastFoodPayment.DTOs.Endpoints.CreatePaymentMPResponse>)result).Value.InStoreOrderId);
+        Assert.Equal(((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).StatusCode, 200);
+        Assert.Equal(mpResponse.QrData, ((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).Value.QrData);
+        Assert.Equal(mpResponse.InStoreOrderId, ((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).Value.InStoreOrderId);
     }
 }

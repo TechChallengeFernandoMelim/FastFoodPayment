@@ -4,7 +4,7 @@ using FastFoodPayment.Model;
 using FastFoodPayment.SqsQueues;
 using Moq;
 
-namespace FastFoodPayment.Tests.SqsQueues;
+namespace FastFoodPayment.Tests;
 
 public class SqsProductionTests
 {

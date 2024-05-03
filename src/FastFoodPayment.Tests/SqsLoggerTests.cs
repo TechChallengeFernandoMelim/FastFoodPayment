@@ -4,7 +4,7 @@ using FastFoodPayment.SqsQueues;
 using Moq;
 using FastFoodPayment.Logger;
 
-namespace FastFoodPayment.Tests.SqsQueues;
+namespace FastFoodPayment.Tests;
 
 public class SqsLoggerTests
 {
