@@ -59,6 +59,44 @@ public class CreatePaymentTests
     }
 
     [Fact]
+    public async Task CreatePayment_NullResponse_ReturnsBadRequest()
+    {
+        // Arrange
+        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1);
+        var mockLogger = new SqsLogger(mockSqsAws.Object);
+        var mockRepository = new PaymentRepository(new Mock<IAmazonDynamoDB>().Object);
+
+        var paymentRequest = new CreatePaymentRequest { };
+
+        var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
+        var mpResponse = new CreatePaymentMPResponse { };
+
+        httpResponseMessage.Content = new StringContent(JsonSerializer.Serialize(mpResponse), Encoding.UTF8, "application/json");
+
+
+
+        var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+        mockHttpMessageHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage { StatusCode = HttpStatusCode.BadRequest });
+
+        var client = new HttpClient(mockHttpMessageHandler.Object);
+
+        Environment.SetEnvironmentVariable("BASE_URL_MERCADO_PAGO", "http://teste.com");
+        Environment.SetEnvironmentVariable("ACCESS_TOKEN_MERCADO_PAGO", "teste");
+        Environment.SetEnvironmentVariable("USER_ID_MERCADO_PAGO", "teste");
+        Environment.SetEnvironmentVariable("EXTERNAL_POS_ID_MERCADO_PAGO", "teste");
+
+        var createPaymentUseCase = new CreatePaymentUseCase(client);
+
+        // Act
+        var result = await createPaymentUseCase.CreatePayment(paymentRequest, mockLogger, mockRepository);
+
+        // Assert
+        Assert.True(((Microsoft.AspNetCore.Http.HttpResults.BadRequest)result).StatusCode == 400);
+    }
+
+    [Fact]
     public async Task CreatePayment_Ok_ReturnsOk()
     {
         // Arrange
@@ -66,7 +104,13 @@ public class CreatePaymentTests
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
-        var paymentRequest = new CreatePaymentRequest { };
+        var paymentRequest = new CreatePaymentRequest
+        {
+            Items = new List<Item>()
+            {
+                new Item() { Title = "teste", Quantity = 1, TotalAmount = 5, UnitMeasure = "u", UnitPrice = 5 },
+            }
+        };
 
         var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
         var mpResponse = new CreatePaymentMPResponse
