@@ -12,7 +12,7 @@ public class PaymentRepository(IAmazonDynamoDB dynamoDb)
 {
     private static string tableName = Environment.GetEnvironmentVariable("AWS_TABLE_NAME_DYNAMO");
 
-    public async Task<bool> CreatePayment(Payment payment)
+    public virtual async Task<bool> CreatePayment(Payment payment)
     {
         var paymentAsJson = JsonSerializer.Serialize(payment);
         var itemAsDocument = Document.FromJson(paymentAsJson);
