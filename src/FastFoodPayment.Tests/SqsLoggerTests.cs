@@ -1,4 +1,5 @@
-﻿using Amazon.Runtime;
+﻿using Amazon;
+using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using FastFoodPayment.Logger;
@@ -23,7 +24,7 @@ public class SqsLoggerTests
         var message = "Test message";
         var exception = "Test exception";
 
-        var sqsClientMock = new Mock<AmazonSQSClient>(_credentialsMock.Object);
+        var sqsClientMock = new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1);
         sqsClientMock.Setup(s => s.SendMessageAsync(It.IsAny<SendMessageRequest>(), It.IsAny<CancellationToken>()))
                      .ReturnsAsync(new SendMessageResponse());
 

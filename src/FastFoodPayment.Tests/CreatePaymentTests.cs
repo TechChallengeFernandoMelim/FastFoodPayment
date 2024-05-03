@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2;
+﻿using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Amazon.SQS;
 using FastFoodPayment.DTOs.Endpoints;
@@ -28,7 +29,7 @@ public class CreatePaymentTests
     public async Task CreatePayment_Error_ReturnsBadRequest()
     {
         // Arrange
-        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object);
+        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1);
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new PaymentRepository(new Mock<IAmazonDynamoDB>().Object);
 
@@ -61,7 +62,7 @@ public class CreatePaymentTests
     public async Task CreatePayment_Ok_ReturnsOk()
     {
         // Arrange
-        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object);
+        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1);
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 

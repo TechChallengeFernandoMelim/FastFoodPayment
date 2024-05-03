@@ -1,4 +1,5 @@
-﻿using Amazon.Runtime;
+﻿using Amazon;
+using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using FastFoodPayment.Model;
@@ -26,7 +27,7 @@ public class SqsProductionTests
             ItensJson = "{\"item\":\"description\"}"
         };
 
-        var sqsClientMock = new Mock<AmazonSQSClient>(_credentialsMock.Object);
+        var sqsClientMock = new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1);
         sqsClientMock.Setup(s => s.SendMessageAsync(It.IsAny<SendMessageRequest>(), It.IsAny<CancellationToken>()))
                      .ReturnsAsync(new SendMessageResponse());
 

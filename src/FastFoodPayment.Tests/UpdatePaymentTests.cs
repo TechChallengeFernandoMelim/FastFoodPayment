@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2;
+﻿using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Amazon.SQS;
 using FastFoodPayment.Logger;
@@ -25,8 +26,8 @@ public class UpdatePaymentTests
     {
         // Arrange
         var inStoreOrderId = "test_order_id";
-        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
-        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
+        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
+        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
         var paymentRepositoryMock = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
         paymentRepositoryMock.Setup(x => x.UpdatePayment(It.IsAny<Payment>())).ReturnsAsync(true);
@@ -50,8 +51,8 @@ public class UpdatePaymentTests
     {
         // Arrange
         var inStoreOrderId = "test_order_id";
-        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
-        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
+        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
+        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
         var paymentRepositoryMock = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
         paymentRepositoryMock.Setup(repo => repo.GetPaymentByPk(inStoreOrderId))
@@ -71,8 +72,8 @@ public class UpdatePaymentTests
     {
         // Arrange
         var inStoreOrderId = "test_order_id";
-        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
-        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
+        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
+        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
         var paymentRepositoryMock = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
         var payment = new Payment { PaymentStatus = "Pending" };
@@ -93,8 +94,8 @@ public class UpdatePaymentTests
     {
         // Arrange
         var inStoreOrderId = "test_order_id";
-        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
-        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object).Object);
+        var loggerMock = new Mock<SqsLogger>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
+        var sqsProductionMock = new Mock<SqsProduction>(new Mock<AmazonSQSClient>(_credentialsMock.Object, RegionEndpoint.USEast1).Object);
         var paymentRepositoryMock = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
         paymentRepositoryMock.Setup(repo => repo.GetPaymentByPk(inStoreOrderId))
