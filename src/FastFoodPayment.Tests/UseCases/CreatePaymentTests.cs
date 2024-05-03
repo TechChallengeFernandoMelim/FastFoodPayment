@@ -24,16 +24,10 @@ public class CreatePaymentTests()
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new PaymentRepository(new Mock<IAmazonDynamoDB>().Object);
 
-        var paymentRequest = new CreatePaymentRequest
-        {
-            // Initialize payment request properties here
-        };
+        var paymentRequest = new CreatePaymentRequest { };
 
         var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
-        var mpResponse = new CreatePaymentMPResponse
-        {
-            // Initialize MP response properties here
-        };
+        var mpResponse = new CreatePaymentMPResponse { };
 
         httpResponseMessage.Content = new StringContent(JsonSerializer.Serialize(mpResponse), Encoding.UTF8, "application/json");
 

@@ -28,7 +28,7 @@ public class PaymentRepository(IAmazonDynamoDB dynamoDb)
         return response.HttpStatusCode == HttpStatusCode.OK;
     }
 
-    public async Task<Payment> GetPaymentByPk(string pk)
+    public virtual async Task<Payment> GetPaymentByPk(string pk)
     {
         var request = new ScanRequest
         {
@@ -49,7 +49,7 @@ public class PaymentRepository(IAmazonDynamoDB dynamoDb)
         return JsonSerializer.Deserialize<Payment>(itemAsDocument.ToJson());
     }
 
-    public async Task<bool> UpdatePayment(Payment updatedPayment)
+    public virtual async Task<bool> UpdatePayment(Payment updatedPayment)
     {
         var updateItemRequest = new UpdateItemRequest
         {

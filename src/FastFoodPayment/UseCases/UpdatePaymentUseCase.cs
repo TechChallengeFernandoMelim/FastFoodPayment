@@ -12,11 +12,11 @@ public class UpdatePaymentUseCase()
         {
             var payment = await paymentRepository.GetPaymentByPk(in_store_order_id);
 
-            if (payment.PaymentStatus == "Paid")
-                return Results.BadRequest("Pagamento desse pedido já foi efetuado.");
-
             if (payment is null)
                 throw new Exception("Pagamento não pode ser nulo");
+
+            if (payment.PaymentStatus == "Paid")
+                return Results.BadRequest("Pagamento desse pedido já foi efetuado.");
 
             payment.PaymentStatus = "Paid";
             await paymentRepository.UpdatePayment(payment);
