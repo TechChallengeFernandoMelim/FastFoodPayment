@@ -155,5 +155,13 @@ public class CreatePaymentTests
         Assert.Equal(paymentRequest.Title, paymentRequest.Title);
         Assert.Equal(paymentRequest.TotalAmount, paymentRequest.TotalAmount);
         Assert.Equal(paymentRequest.Items, paymentRequest.Items);
+
+        var firstItem = paymentRequest.Items[0];
+
+        Assert.Equal(firstItem.Title, firstItem.Title);
+        Assert.Equal(firstItem.Quantity, firstItem.Quantity);
+        Assert.Equal(firstItem.TotalAmount, firstItem.TotalAmount);
+        Assert.Equal(firstItem.UnitPrice, firstItem.UnitPrice);
+        Assert.Equal(firstItem.UnitMeasure, firstItem.UnitMeasure);
     }
 }
