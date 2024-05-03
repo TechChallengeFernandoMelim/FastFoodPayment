@@ -5,13 +5,16 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3631A51-35AD-4C27-95BA-8665214D8165}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
 		.github\workflows\deploy.yaml = .github\workflows\deploy.yaml
+		.github\workflows\build.yaml = .github\workflows\build.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{998811FD-64C3-464F-8005-85836D48FD8A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodPayment", "src\FastFoodPayment\FastFoodPayment.csproj", "{470FCC4E-88B0-461C-9D85-FCF5DBAE7582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodPayment.Tests", "src\FastFoodPayment.Tests\FastFoodPayment.Tests.csproj", "{C189F032-1DE6-49DD-AB1D-A580436A0520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +26,17 @@ Global
 		{470FCC4E-88B0-461C-9D85-FCF5DBAE7582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470FCC4E-88B0-461C-9D85-FCF5DBAE7582}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{470FCC4E-88B0-461C-9D85-FCF5DBAE7582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C189F032-1DE6-49DD-AB1D-A580436A0520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C189F032-1DE6-49DD-AB1D-A580436A0520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C189F032-1DE6-49DD-AB1D-A580436A0520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C189F032-1DE6-49DD-AB1D-A580436A0520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{470FCC4E-88B0-461C-9D85-FCF5DBAE7582} = {998811FD-64C3-464F-8005-85836D48FD8A}
+		{C189F032-1DE6-49DD-AB1D-A580436A0520} = {998811FD-64C3-464F-8005-85836D48FD8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9D7971A-E45B-4570-BF2B-F479B10F8CB4}
