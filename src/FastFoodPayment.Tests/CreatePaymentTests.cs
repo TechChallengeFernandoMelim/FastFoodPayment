@@ -106,6 +106,11 @@ public class CreatePaymentTests
 
         var paymentRequest = new CreatePaymentRequest
         {
+            Description = "teste",
+            ExternalReference = "teste",
+            NotificationUrl = "teste",
+            Title = "teste",
+            TotalAmount = 12,
             Items = new List<Item>()
             {
                 new Item() { Title = "teste", Quantity = 1, TotalAmount = 5, UnitMeasure = "u", UnitPrice = 5 },
@@ -143,5 +148,12 @@ public class CreatePaymentTests
         Assert.Equal(((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).StatusCode, 200);
         Assert.Equal(mpResponse.QrData, ((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).Value.QrData);
         Assert.Equal(mpResponse.InStoreOrderId, ((Microsoft.AspNetCore.Http.HttpResults.Ok<CreatePaymentMPResponse>)result).Value.InStoreOrderId);
+
+        Assert.Equal(paymentRequest.Description, paymentRequest.Description);
+        Assert.Equal(paymentRequest.ExternalReference, paymentRequest.ExternalReference);
+        Assert.Equal(paymentRequest.NotificationUrl, paymentRequest.NotificationUrl);
+        Assert.Equal(paymentRequest.Title, paymentRequest.Title);
+        Assert.Equal(paymentRequest.TotalAmount, paymentRequest.TotalAmount);
+        Assert.Equal(paymentRequest.Items, paymentRequest.Items);
     }
 }
