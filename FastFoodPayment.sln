@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3631A51-35AD-4C27-95BA-8665214D8165}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		.github\workflows\deploy.yaml = .github\workflows\deploy.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{998811FD-64C3-464F-8005-85836D48FD8A}"
