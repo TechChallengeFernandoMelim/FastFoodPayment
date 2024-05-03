@@ -9,14 +9,11 @@ namespace FastFoodPayment.Tests;
 
 public class SqsProductionTests
 {
-    Mock<AWSCredentials> _credentialsMock;
+    Mock<BasicAWSCredentials> _credentialsMock;
 
     public SqsProductionTests()
     {
-        string accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_DYNAMO");
-        string secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY_DYNAMO");
-
-        _credentialsMock = new Mock<AWSCredentials>(new BasicAWSCredentials(accessKey, secretKey));
+        _credentialsMock = new Mock<BasicAWSCredentials>("accesskey", "secretekeys");
     }
 
     [Fact]
