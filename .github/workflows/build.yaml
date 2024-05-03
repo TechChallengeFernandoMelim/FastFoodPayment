@@ -41,7 +41,7 @@ jobs:
       - name: Install dotnet-coverage globally
         run: | 
          dotnet tool install -g dotnet-coverage
-      - name: Install dotnet-coverage globally
+      - name: Dotnet Coverage tests
         run: | 
          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
       - name: Build and analyze

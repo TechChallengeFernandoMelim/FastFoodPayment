@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
+using Amazon.Runtime;
 using Amazon.SQS;
 using FastFoodPayment.DTOs.Endpoints;
 using FastFoodPayment.Logger;
@@ -14,13 +15,23 @@ using System.Text.Json;
 
 namespace FastFoodPayment.Tests;
 
-public class CreatePaymentTests()
+public class CreatePaymentTests
 {
+    Mock<AWSCredentials> _credentialsMock;
+
+    public CreatePaymentTests()
+    {
+        string accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_DYNAMO");
+        string secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY_DYNAMO");
+
+        _credentialsMock = new Mock<AWSCredentials>(new BasicAWSCredentials(accessKey, secretKey));
+    }
+
     [Fact]
     public async Task CreatePayment_Error_ReturnsBadRequest()
     {
         // Arrange
-        var mockSqsAws = new Mock<AmazonSQSClient>();
+        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object);
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new PaymentRepository(new Mock<IAmazonDynamoDB>().Object);
 
@@ -53,7 +64,7 @@ public class CreatePaymentTests()
     public async Task CreatePayment_Ok_ReturnsOk()
     {
         // Arrange
-        var mockSqsAws = new Mock<AmazonSQSClient>();
+        var mockSqsAws = new Mock<AmazonSQSClient>(_credentialsMock.Object);
         var mockLogger = new SqsLogger(mockSqsAws.Object);
         var mockRepository = new Mock<PaymentRepository>(new Mock<IAmazonDynamoDB>().Object);
 
