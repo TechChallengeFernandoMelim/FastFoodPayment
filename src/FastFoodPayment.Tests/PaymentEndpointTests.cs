@@ -42,32 +42,5 @@ public class PaymentEndpointTests
 
         // Act
         endpoints.RegisterPaymentsEndpoints();
-
-        // Use an HTTP context to simulate a request to your endpoint
-        //var httpContext = new DefaultHttpContext();
-        //httpContext.Request.Method = "POST";
-        //httpContext.Request.Path = "/CreatePayment";
-
-        //var endpointDataSource = endpoints.Services.GetRequiredService<EndpointDataSource>();
-
-        //var matchingEndpoints = endpointDataSource.Endpoints.Where(e =>
-        //{
-        //    var endpoint = e as RouteEndpoint;
-        //    var httpMethodMetadata = e.Metadata.GetMetadata<HttpMethodMetadata>();
-        //    return endpoint != null &&
-        //           httpMethodMetadata != null &&
-        //           httpMethodMetadata.HttpMethods.Contains(httpContext.Request.Method) &&
-        //           endpoint.RoutePattern.RawText == httpContext.Request.Path;
-        //});
-
-        //var endpoint = matchingEndpoints.FirstOrDefault();
-
-        //Assert.NotNull(endpoint);
-
-        // Execute the endpoint
-        //var result = await endpoint.RequestDelegate.Invoke(httpContext) as IActionResult;
-
-        //// Assert
-        //Assert.IsType<OkResult>(result);
     }
 }
