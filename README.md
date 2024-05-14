@@ -33,3 +33,10 @@ Conforme foi solicitado, estou postando aqui as evidências de cobertura dos test
 ![Coverage2](./images/coverage2.png)
 
 Através das imagens é possível observar que a cobertura por testes unitários ficou superior a 80%, conforme solicitado.
+
+## Endpoints
+
+Os endpoints presentes nesse projeto são:
+
+- POST /CreatePayment: Responsável por criar o pedido no Mercado Pago e retornar o QR Code(PIX) para pagamento do pedido. Esse endpoint é chamado quando o cliente está criando um pedido. 
+- PATCH /UpdatePayment/{in_store_order_id}: Responsável por atualizar o status do pagamento do pedido e por enfileirar o pedido para a produção caso o mesmo tenha sido pago.
