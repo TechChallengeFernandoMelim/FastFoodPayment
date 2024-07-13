@@ -13,6 +13,7 @@ public class SqsProduction(AmazonSQSClient sqsClient)
             { "Service",   new MessageAttributeValue { DataType = "String", StringValue = "FastFoodPayment" } },
             { "InStoreOrderId",   new MessageAttributeValue { DataType = "String", StringValue = payment.InStoreOrderId } },
             { "ItensJson",   new MessageAttributeValue { DataType = "String", StringValue = payment.ItensJson } },
+            { "PaymentStatus",   new MessageAttributeValue { DataType = "String", StringValue = payment.PaymentStatus } },
         };
 
         var sendMessageRequest = new SendMessageRequest
